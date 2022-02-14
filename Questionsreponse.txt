@@ -1,0 +1,98 @@
+TP Développer un site web dynamique en PHP
+
+Nous allons continuer le site commencé en cours.
+
+Question de cours
+1 Définir les variables superglobale. Expliquez comment ils fonctionnent. Donnez des exemples :
+	GET POST SESSION GLOBAL. BONUS : FILE COOKIES
+    
+    Les variables superglobales sont des variables internes  créées automatiquement par le PHP.
+    
+    Ces variables vont être accessibles n’importe où dans le script quel que soit le contexte, qu’il soit local ou global. 
+    
+    Les superglobales $_GET et $_POST vont être utilisées pour manipuler les informations envoyées via un formulaire HTML.
+    Ces deux superglobales vont stocker les différentes valeurs envoyées par un utilisateur via un formulaire selon la méthode d’envoi : 
+    $_GET stockera les valeurs lorsque le formulaire sera envoyé via la méthode GET tandis que $_POST stockera les valeurs lorsque le formulaire sera envoyé via la méthode POST.
+
+    La superglobale $_SESSION est un tableau associatif qui contient toutes les variables de session.
+
+    La variable superglobale $GLOBAL est une variable tableau qui stocke automatiquement toutes les variables globales déclarées dans le script.
+    Ce tableau est un tableau associatif qui contient les noms des variables créées dans l’espace global en index et leurs valeurs en valeurs du tableau.
+
+    La superglobale $_FILES va contenir des informations sur un fichier téléchargé, comme le type du fichier, sa taille, son nom, etc.
+    On pourra donc utiliser cette superglobale lorsqu’on offre la possibilité à nos utilisateurs de nous envoyer des fichiers, afin d’obtenir des informations sur les fichiers envoyés ou même pour filtrer et interdire l’envoi de certains fichiers.
+
+    La superglobale $_COOKIE est un tableau associatif qui contient toutes les variables passées via des cookies HTTP.
+
+
+2 Expliquez le principe d’un ORM. Donnez des exemples.
+
+ORM est une bibliothèque tout à fait ordinaire écrite dans la langue de votre choix qui encapsule le code nécessaire pour manipuler les données, donc vous n'utilisez plus SQL; vous interagissez directement avec un objet dans la même langue que vous utilisez.
+
+Par exemple, voici un cas complètement imaginaire avec un pseudo langage:
+
+Vous avez un cours de lecture, vous souhaitez récupérer tous les livres dont l'auteur est "Linus". Manuellement, vous feriez quelque chose comme ça:
+
+book_list = new List();
+sql = "SELECT book FROM library WHERE author = 'Linus'";
+data = query(sql); // I over simplify ...
+while (row = data.next())
+{
+     book = new Book();
+     book.setAuthor(row.get('author');
+     book_list.add(book);
+}
+Avec une bibliothèque ORM, cela ressemblerait à ceci:
+
+book_list = BookTable.query(author="Linus");
+
+3 Expliquez le principe du CRUD. Donnez des exemples.
+
+CRUD (create, read, update, delete) (créer, lire, mettre à jour, supprimer) est un acronyme pour les façons dont on peut fonctionner sur des données stockées. 
+C'est un moyen mnémotechnique pour les quatre fonctions de base du stockage persistant.
+
+Create (POST method)
+Construire un URI pour traiter les demandes (request) dans but de créer un employé (employee). Ce URI n'accepte que les demandes avec la méthode POST. 
+Les données attachées de cette demande est l'information de l'employé crée.
+ Elle est sous format de XML ou JSON.
+
+Read (GET method)
+ Construire un URI qui est assigné pour renvoyer à l'utilisateur une liste d'employés et définit un autre URI qui renvoie à l'utilisateur les informations d'un employé particulier. 
+ Les données que l'utilisateur recevra sont au format XML ou JSON. 
+ Ces URI n'acceptent que les requêtes avec la méthode GET.
+
+Update (PUT method)
+Créez un URI pour traiter la demande de modification des informations d'un employé. Cet URI n'accepte que les requêtes avec la méthode PUT. 
+Les données jointes à la demande sont les nouvelles informations de l'employé, qui sont au format XML ou JSON.
+
+Delete (DELETE method)
+Construisez un URI pour traiter une demande (request) de suppression d'un employé (employee). 
+Ce URI n'accepte que les demandes utilisant la méthode DELETE.
+
+4 Expliquez le principe du MVC : Donnez des exemples.
+
+MVC est un motif d'architecture logicielle destiné aux interfaces graphiques lancé en 1978 et très populaire pour les applications web. 
+Le motif est composé de trois types de modules ayant trois responsabilités différentes : 
+
+les modèles, les vues et les contrôleurs.
+
+Un modèle (Model) contient les données à afficher.
+Une vue (View) contient la présentation de l'interface graphique.
+Un contrôleur (Controller) contient la logique concernant les actions effectuées par l'utilisateur.
+Ce motif est utilisé par de nombreux frameworks pour applications web tels que Ruby on Rails, Grails, ASP.NET MVC, Spring, Struts, Symfony, Apache Tapestry, Laravel, Django ou AngularJS.
+
+Exercice : 
+Creez un Nouveau projet (en bonus : architecture MVC), permettant de réaliser un CRUD sur des articles
+Un article sera constitué de
+ Un titre
+Une description 
+Un prix
+Une image (en bonus)
+ 
+Faites en sorte que lorsqu’un champ n’est pas rempli mais d’autres sont bien rempli nous puissions voir les champ texte correct bien rempli.
+Réaliser d’autres contrôles de vérification : 
+
+1)	Taille minimum du champs Titre description et prix
+Faire en sorte que l’on puisse ajouter en favoris un article.
+Pour cela, utiliser les sessions lors de la connexion avec session_start (Ou en bonus les cookies)
+
